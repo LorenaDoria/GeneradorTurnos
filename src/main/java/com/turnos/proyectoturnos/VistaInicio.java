@@ -42,6 +42,7 @@ public class VistaInicio extends javax.swing.JFrame {
         jLabel1.setText("Bienvenido");
         jLabel1.setAlignmentX(0.5F);
 
+        jTextField1.setText("1018488778");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -109,11 +110,11 @@ public class VistaInicio extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addComponent(jButton2)
                 .addGap(48, 48, 48)
                 .addComponent(jButton3)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
