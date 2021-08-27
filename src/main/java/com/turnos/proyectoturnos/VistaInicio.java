@@ -8,6 +8,7 @@ package com.turnos.proyectoturnos;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -236,11 +237,9 @@ public class VistaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdentificacionActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        
-       //VistaTurno siguiente = new VistaTurno();
-       
-        //siguiente.setVisible(true);
-       
+        if(txtIdentificacion.getText().equals("")){
+        JOptionPane.showMessageDialog(null, " ERROR! DEBE INGRESAR UNA IDENTIFICACIÓN");
+        }else{
         
         us.setIdentificacion(txtIdentificacion.getText());
         txtIdentificacion.setText("");
@@ -262,11 +261,11 @@ public class VistaInicio extends javax.swing.JFrame {
         }if(opUnP.isSelected()==true){
             us.setTipoUsuario("UNP");
         }
-        this.setVisible(true);        //us.Mostrar();
+        this.setVisible(true);      
     
        turn.solicitarTurno(us);
-        //us.Saludar();
-                
+        
+        }  
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jRcontributivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRcontributivoActionPerformed

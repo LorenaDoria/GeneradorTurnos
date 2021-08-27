@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class Turno extends Usuario {
-    ArrayList<Usuario> colaCR = new ArrayList<>();//Creo una lista de objetos tipo Turno
-    ArrayList<Usuario> colaC = new ArrayList<>();//Creo una lista de objetos tipo Turno
-    ArrayList<Usuario> colaSR = new ArrayList<>();//Creo una lista de objetos tipo Turno
-    ArrayList<Usuario> colaS = new ArrayList<>();//Creo una lista de objetos tipo Turno
+    ArrayList<Usuario> colaCR = new ArrayList<>();//Creo una Cola para Usuario Contributivo Rápida
+    ArrayList<Usuario> colaC = new ArrayList<>();//Creo una Cola para Usuario Contributivo 
+    ArrayList<Usuario> colaSR = new ArrayList<>();//Creo una Cola para Usuario Subsidiado Rápida
+    ArrayList<Usuario> colaS = new ArrayList<>();//Creo una Cola para Usuario Subsidiado
     
     
     
@@ -135,16 +135,16 @@ public Turno(){}
                (us.getTipoAfiliacion().equals("Contributivo") && us.getTipoUsuario().equals("ADM"))||
                 (us.getTipoAfiliacion().equals("Contributivo") && us.getTipoUsuario().equals("PCD"))){
              //if (colaCR.isEmpty()){
-                this.caja = " CAJA #1  ";
-                this.codigoTurno = "Turno:"+this.contadorCajaContributivoR+"\n Dirijase a: "+this.caja;
+                this.caja = " CAJA CONTRIBUTIVO #1  ";
+                this.codigoTurno = "Dirijase a:"+this.caja+"\n"+"Turno:"+this.contadorCajaContributivoR+"\n";
                 this.incrementarContributivoR();
                 colaCR.add(us);
                 JOptionPane.showMessageDialog(null, "-----SOLICITUD EXITOSA----- \n"+this.codigoTurno);
             
             }else if(us.getTipoAfiliacion().equals("Contributivo") && ( us.getTipoUsuario().equals("UNP"))){
                    //if (colaC.isEmpty()){
-                    this.caja = "CAJA #2 ";
-                    this.codigoTurno = "Turno:"+this.contadorCajaContributivo+"\n Dirijase a: "+this.caja;
+                    this.caja = "CAJA CONTRIBUTIVO #2 ";
+                    this.codigoTurno = "Dirijase a:"+this.caja+"\n"+"Turno:"+this.contadorCajaContributivo+"\n";
                     this.incrementarContributivo();
                     colaC.add(us);
                 JOptionPane.showMessageDialog(null, "------SOLICITUD EXITOSA------\n"+this.codigoTurno);
@@ -152,27 +152,22 @@ public Turno(){}
                (us.getTipoAfiliacion().equals("Subsidiado") && us.getTipoUsuario().equals("ADM"))||
                 (us.getTipoAfiliacion().equals("Subsidiado") && us.getTipoUsuario().equals("PCD"))){
                 // if (colaSR.isEmpty()){
-                 this.caja = " CAJA #3";
-                 this.codigoTurno = "Turno:"+this.contadorCajaSubsidiadoR+"\n Dirijase a: "+this.caja;
+                 this.caja = " CAJA SUBSIDIADO #3";
+                 this.codigoTurno = "Dirijase a:"+this.caja+"\n"+"Turno:"+this.contadorCajaSubsidiadoR+"\n";
                  this.incrementarSubsidiadoR();
                  colaSR.add(us);
                 JOptionPane.showMessageDialog(null, "------SOLICITUD EXITOSA------- \n"+this.codigoTurno);
             } else if(us.getTipoAfiliacion().equals("Subsidiado") && ( us.getTipoUsuario().equals("UNP"))){
                //if (colaS.isEmpty()){
-                this.caja = "CAJA #4";
-                this.codigoTurno = "Turno:"+this.contadorCajaSubsidiado+"\n Dirijase a: "+this.caja;
+                this.caja = "CAJA SUBSIDIADO #4";
+                this.codigoTurno = "Dirijase a:"+this.caja+"\n"+"Turno:"+this.contadorCajaSubsidiado+"\n";
                 this.incrementarSubsidiado();
                 colaS.add(us);
                 JOptionPane.showMessageDialog(null, "--------SOLICITUD EXITOSA------ \n"+this.codigoTurno);
           
           
             }}
-            
-            
-    
-    
-    
-    }//}
+    }
 
         
         
