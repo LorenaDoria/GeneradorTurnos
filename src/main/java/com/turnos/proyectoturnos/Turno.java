@@ -5,11 +5,23 @@
  */
 package com.turnos.proyectoturnos;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class Turno extends Usuario {
+    ArrayList<Usuario> colaCR = new ArrayList<>();//Creo una lista de objetos tipo Turno
+    ArrayList<Usuario> colaC = new ArrayList<>();//Creo una lista de objetos tipo Turno
+    ArrayList<Usuario> colaSR = new ArrayList<>();//Creo una lista de objetos tipo Turno
+    ArrayList<Usuario> colaS = new ArrayList<>();//Creo una lista de objetos tipo Turno
+    
+    
+    
+    
+    Usuario us= new Usuario();
     //Creación atributos
     private String caja;//Indica la caja a la cuál se debe dirijir el usuario una vez entregado el código del turno
     private String codigoTurno;//Código de turno alfanumérico que indica en sus siglas el regimen y tipo de usuario junto con el número indicativo de orden de atención
@@ -27,21 +39,23 @@ public class Turno extends Usuario {
     private int contadorCajaSubsidiadoR = 1;
     private int contadorCajaContributivo = 1;
     private int contadorCajaContributivoR = 1;
-
+public Turno(){}
     //Método constructor #1
     //Se usa para el primer usuario que vaya a generar turno
-    public Turno(int identificacion, String tipoAfiliacion, String tipoUsuario) {
+    public Turno(String identificacion, String tipoAfiliacion, String tipoUsuario) {
         super(identificacion, tipoAfiliacion, tipoUsuario);
     }
     //Método constructor #2
     //Se usa a partir del segundo usuario que vaya a generar turno para de esta manera ir incrementando los contadores y asi el número indicativo del turno
-    public Turno(int contadorCajaSubsidiado, int contadorCajaSubsidiadoR, int contadorCajaContributivo, int contadorCajaContributivoR, int identificacion, String tipoAfiliacion, String tipoUsuario) {
+    public Turno(int contadorCajaSubsidiado, int contadorCajaSubsidiadoR, int contadorCajaContributivo, int contadorCajaContributivoR, String identificacion, String tipoAfiliacion, String tipoUsuario) {
         super(identificacion, tipoAfiliacion, tipoUsuario);
         this.contadorCajaSubsidiado = contadorCajaSubsidiado;
         this.contadorCajaSubsidiadoR = contadorCajaSubsidiadoR;
         this.contadorCajaContributivo = contadorCajaContributivo;
         this.contadorCajaContributivoR = contadorCajaContributivoR;
     }
+
+   
     
 //Métodos getters y setters para los atributos
     public String getCaja() {
@@ -110,31 +124,66 @@ public class Turno extends Usuario {
     }
     //Se sobre escribe el método anbstracto de la clase Usuario
     //Se realizan las validaciones para generar el CodigoTurno y caja a cada usuario dependiendo su regimen y tipo de usurio
-    @Override
-    public String solicitarTurno(){
-        if(this.getTipoAfiliacion().equals("Subsidiado") && ( this.getTipoUsuario().equals("Embarazada o persona discapacitada") || this.getTipoUsuario().equals("Adulto Mayor") )){
-            this.caja = "Caja Subsidiado rápida";
-            this.codigoTurno = "Turno: SR"+this.contadorCajaSubsidiadoR+" dirijase a: "+this.caja;
-            this.incrementarSubsidiadoR();
-            return this.codigoTurno;
-        } else if(this.getTipoAfiliacion().equals("Subsidiado") && this.getTipoUsuario().equals("Persona normal")){
-            this.caja = "Caja Subsidiado";
-            this.codigoTurno = "Turno: SN"+this.contadorCajaSubsidiado+" dirijase a: "+this.caja;
-            this.incrementarSubsidiado();
-            return this.codigoTurno;
-        } else if(this.getTipoAfiliacion().equals("Contributivo") && ( this.getTipoUsuario().equals("Embarazada o persona discapacitada") || this.getTipoUsuario().equals("Adulto Mayor") )){
-            this.caja = "Caja Contrubutivo rápida";
-            this.codigoTurno = "Turno: CR"+this.contadorCajaContributivoR+" dirijase a: "+this.caja;
-            this.incrementarContributivoR();
-            return this.codigoTurno;
-        } else if(this.getTipoAfiliacion().equals("Contributivo") && this.getTipoUsuario().equals("Persona normal")){
-            this.caja = "Caja Contributivo";
-            this.codigoTurno = "Turno: CN"+this.contadorCajaContributivo+" dirijase a: "+this.caja;
-            this.incrementarContributivo();
-            return this.codigoTurno;
-        } else {
-            return "Error, usuario no válido";
-        }
-    }
-}
+    
+    public void solicitarTurno(Usuario us){
+      //Si la lista esta vacia una el constructo #1
+            
+           //Se agrega ese objeto a la lista llamada cola
+            
+            
+            if(us.getTipoAfiliacion().equals("Contributivo") && us.getTipoUsuario().equals("EMB")||
+               (us.getTipoAfiliacion().equals("Contributivo") && us.getTipoUsuario().equals("ADM"))||
+                (us.getTipoAfiliacion().equals("Contributivo") && us.getTipoUsuario().equals("PCD"))){
+             //if (colaCR.isEmpty()){
+                this.caja = " CAJA #1  ";
+                this.codigoTurno = "Turno:"+this.contadorCajaContributivoR+"\n Dirijase a: "+this.caja;
+                this.incrementarContributivoR();
+                colaCR.add(us);
+                JOptionPane.showMessageDialog(null, "-----SOLICITUD EXITOSA----- \n"+this.codigoTurno);
+            
+            }else if(us.getTipoAfiliacion().equals("Contributivo") && ( us.getTipoUsuario().equals("UNP"))){
+                   //if (colaC.isEmpty()){
+                    this.caja = "CAJA #2 ";
+                    this.codigoTurno = "Turno:"+this.contadorCajaContributivo+"\n Dirijase a: "+this.caja;
+                    this.incrementarContributivo();
+                    colaC.add(us);
+                JOptionPane.showMessageDialog(null, "------SOLICITUD EXITOSA------\n"+this.codigoTurno);
+            }else if(us.getTipoAfiliacion().equals("Subsidiado") && us.getTipoUsuario().equals("EMB")||
+               (us.getTipoAfiliacion().equals("Subsidiado") && us.getTipoUsuario().equals("ADM"))||
+                (us.getTipoAfiliacion().equals("Subsidiado") && us.getTipoUsuario().equals("PCD"))){
+                // if (colaSR.isEmpty()){
+                 this.caja = " CAJA #3";
+                 this.codigoTurno = "Turno:"+this.contadorCajaSubsidiadoR+"\n Dirijase a: "+this.caja;
+                 this.incrementarSubsidiadoR();
+                 colaSR.add(us);
+                JOptionPane.showMessageDialog(null, "------SOLICITUD EXITOSA------- \n"+this.codigoTurno);
+            } else if(us.getTipoAfiliacion().equals("Subsidiado") && ( us.getTipoUsuario().equals("UNP"))){
+               //if (colaS.isEmpty()){
+                this.caja = "CAJA #4";
+                this.codigoTurno = "Turno:"+this.contadorCajaSubsidiado+"\n Dirijase a: "+this.caja;
+                this.incrementarSubsidiado();
+                colaS.add(us);
+                JOptionPane.showMessageDialog(null, "--------SOLICITUD EXITOSA------ \n"+this.codigoTurno);
+          
+          
+            }}
+            
+            
+    
+    
+    
+    }//}
+
+        
+        
+        
+        
+    
+
+    
+    
+    
+    
+    
+
     

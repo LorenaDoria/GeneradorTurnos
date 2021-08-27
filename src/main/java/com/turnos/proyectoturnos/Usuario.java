@@ -5,20 +5,23 @@
  */
 package com.turnos.proyectoturnos;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
-public abstract class Usuario {
+public class Usuario {
     
-    private int identificacion;
+    private String identificacion;
     private String tipoAfiliacion;// tipo de afiliación va a ser: contributivo o subsidiado
     private String tipoUsuario ;// tipo de usurio va a ser: persona normal, persona embarazada o discapacitada y adulto mayor
    
-    
+    public Usuario(){
+    }
     
    //Constructor
-    public Usuario(int identificacion, String tipoAfiliacion, String tipoUsuario){
+    public Usuario(String identificacion, String tipoAfiliacion, String tipoUsuario){
         
         this.identificacion = identificacion;
         this.tipoAfiliacion = tipoAfiliacion;
@@ -26,14 +29,27 @@ public abstract class Usuario {
     }
     
     //Método abstacto que sera implementado en la clase Turno
-    public abstract String solicitarTurno();
+    //public abstract String solicitarTurno();
+
+   
+   public void Mostrar(){
+       
+      JOptionPane.showMessageDialog(null, "Hola Su turno es"+this.identificacion+this.tipoAfiliacion+this.tipoUsuario);
+     //System.out.print("ID :"+this.identificacion+"\n"+"Afiliacion:"+this.tipoAfiliacion+"\n"+"Usuario:"+this.tipoUsuario);
+   }
+   
+   public void Saludar(){
+       
+       if(this.getIdentificacion().equals("123")){      JOptionPane.showMessageDialog(null,"HOLAAAAAA");
+}
+   }
     
     //Creacion de getters y setters
-    public int getIdentificacion() {
+    public String getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(int identificacion) {
+    public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
 
